@@ -9,13 +9,17 @@ dotenv.config()
 
 const app = express()
 
+// middlewares
+app.use(express.json()) // allow parse incoming requests with JSON payload
+
 app.get("/", (req, res) => {
 	res.send("Hello, World!")
 })
 
 app.use("/api/auth", authRoute)
 
-app.listen(3000, () => {
+const PORT = process.env.PORT || 5000
+app.listen(PORT, () => {
 	connectDb()
-	console.log(`server running on http://localhost:${3000}`)
+	console.log(`server running on http://localhost:${PORT}`)
 })
