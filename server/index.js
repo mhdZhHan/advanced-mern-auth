@@ -1,5 +1,6 @@
 import dotenv from "dotenv"
 import express from "express"
+import cors from "cors"
 import cookieParser from "cookie-parser"
 
 import { connectDb } from "./db/connectDb.js"
@@ -12,6 +13,7 @@ dotenv.config()
 const app = express()
 
 // middlewares
+app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }))
 app.use(express.json()) // allow parse incoming requests with JSON payload
 app.use(cookieParser()) // allow parse incoming cookies
 
