@@ -5,6 +5,7 @@ import { User } from "../models/user.model.js"
 
 // lib
 import { generateTokenAndSetCookie } from "../lib/generateTokenAndSetCookie.js"
+import { sendVerificationEmail } from "../mailtrap/emails.js"
 
 export const signup = async (req, res) => {
 	const { email, password, name } = req.body
@@ -37,6 +38,8 @@ export const signup = async (req, res) => {
 
 		// jwt
 		generateTokenAndSetCookie(res, user._id)
+
+		await sendVerificationEmail(user.email, verificationToken)
 
 		res.status(201).json({
 			// 200 => something created successfully
