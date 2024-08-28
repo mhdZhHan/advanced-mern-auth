@@ -18,6 +18,7 @@ export const verifyEmail = async (req, res) => {
 
 		if (!user) {
 			return res.status(400).json({
+				success: false,
 				message: "Invalid or expired verification cod",
 			})
 		}
@@ -33,6 +34,7 @@ export const verifyEmail = async (req, res) => {
 		await sendWelcomeEmail(user.email, user.name)
 
 		res.status(200).json({
+			success: true,
 			message: "Email verification successfully",
 			user: {
 				...user._doc,
@@ -41,7 +43,7 @@ export const verifyEmail = async (req, res) => {
 		})
 	} catch (error) {
 		console.log("Error in verify email ", error)
-		res.status(500).json({ message: "Server error" })
+		res.status(500).json({ success: false, message: "Server error" })
 	}
 }
 
@@ -56,7 +58,9 @@ export const signup = async (req, res) => {
 		const userAlreadyExists = await User.findOne({ email })
 
 		if (userAlreadyExists) {
-			return res.status(400).json({ message: "User already exists" })
+			return res
+				.status(400)
+				.json({ success: false, message: "User already exists" })
 		}
 
 		const hashedPassword = await bcrypt.hash(password, 10)
@@ -81,6 +85,7 @@ export const signup = async (req, res) => {
 
 		res.status(201).json({
 			// 200 => something created successfully
+			success: true,
 			message: "User created successfully",
 			user: {
 				...user._doc,
@@ -88,7 +93,7 @@ export const signup = async (req, res) => {
 			},
 		})
 	} catch (error) {
-		res.status(400).json({ message: error.message })
+		res.status(400).json({ success: false, message: error.message })
 	}
 }
 
