@@ -1,5 +1,7 @@
 import dotenv from "dotenv"
 import express from "express"
+import cookieParser from "cookie-parser"
+
 import { connectDb } from "./db/connectDb.js"
 
 // routers
@@ -11,6 +13,7 @@ const app = express()
 
 // middlewares
 app.use(express.json()) // allow parse incoming requests with JSON payload
+app.use(cookieParser()) // allow parse incoming cookies
 
 app.get("/", (req, res) => {
 	res.send("Hello, World!")
