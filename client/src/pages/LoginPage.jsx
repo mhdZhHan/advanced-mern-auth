@@ -1,4 +1,6 @@
+import { motion } from "framer-motion"
+
 const LoginPage = () => {
-	return <div>LoginPage</div>
+	return <div className=""></div>
 }
 export default LoginPage
