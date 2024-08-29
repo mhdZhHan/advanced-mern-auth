@@ -7,9 +7,11 @@ import SignUpPage from "./pages/SignUpPage"
 import LoginPage from "./pages/LoginPage"
 import EmailVerificationPage from "./pages/EmailVerificationPage"
 import LoadingSpinner from "./components/LoadingSpinner"
+import DashboardPage from "./pages/DashboardPage"
+import ForgotPasswordPage from "./pages/ForgotPasswordPage"
+import ResetPasswordPage from "./pages/ResetPasswordPage"
 
 import { useAuthStore } from "./store/authStore"
-import DashboardPage from "./pages/DashboardPage"
 
 // protect routes that require authentication
 const ProtectedRoute = ({ children }) => {
@@ -97,7 +99,27 @@ function App() {
 				/>
 				<Route
 					path="/verify-email"
-					element={<EmailVerificationPage />}
+					element={
+						<RedirectAuthenticatedUser>
+							<EmailVerificationPage />
+						</RedirectAuthenticatedUser>
+					}
+				/>
+				<Route
+					path="/forgot-password"
+					element={
+						<RedirectAuthenticatedUser>
+							<ForgotPasswordPage />
+						</RedirectAuthenticatedUser>
+					}
+				/>
+				<Route
+					path="/reset-password/:token"
+					element={
+						<RedirectAuthenticatedUser>
+							<ResetPasswordPage />
+						</RedirectAuthenticatedUser>
+					}
 				/>
 			</Routes>
 

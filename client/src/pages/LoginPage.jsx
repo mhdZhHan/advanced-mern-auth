@@ -52,7 +52,7 @@ const LoginPage = () => {
 
 					<div className="flex items-center mb-6">
 						<Link
-							to="/signup"
+							to="/forgot-password"
 							className="text-sm text-green-400 hover:underline"
 						>
 							Forgot Password?
@@ -88,7 +88,7 @@ const LoginPage = () => {
 				<p className="text-sm text-gray-400">
 					Don't have an account?{" "}
 					<Link
-						to="/login"
+						to="/signup"
 						className="text-green-400 hover:underline"
 					>
 						Sign Up
