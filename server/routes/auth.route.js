@@ -13,6 +13,7 @@ import { verifyToken } from "../middlewares/verifyToken.js"
 const router = express.Router()
 
 router.get("/check-auth", verifyToken, checkAuth)
+// router.get("/get-posts", verifyToken, getPosts) // protected api route 
 
 router.post("/signup", signup)
 router.post("/login", login)
