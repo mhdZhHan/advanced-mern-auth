@@ -121,6 +121,13 @@ function App() {
 						</RedirectAuthenticatedUser>
 					}
 				/>
+				<Route
+					path="*"
+					element={
+						// <NotFoundPage />
+						<Navigate to="/" replace />
+					}
+				/>
 			</Routes>
 
 			<Toaster />
