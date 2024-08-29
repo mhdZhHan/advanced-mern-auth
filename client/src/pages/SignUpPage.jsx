@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { Lock, Mail, User } from "lucide-react"
+import { Lock, Mail, User, Loader } from "lucide-react"
 
 import Input from "../components/Input"
 import { Link, useNavigate } from "react-router-dom"
@@ -21,7 +21,7 @@ const SignUpPage = () => {
 
 		try {
 			await signup(email, password, name)
-			navigate("/")
+			navigate("/verify-email")
 		} catch (error) {
 			console.log(error)
 		}
