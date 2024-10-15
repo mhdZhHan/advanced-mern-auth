@@ -16,11 +16,10 @@ sudo apt install -y nginx certbot python3-certbot-nginx curl software-properties
 sudo systemctl start nginx
 sudo systemctl enable nginx
 
-# Install Node.js (using nvm for version management)
+# Install Node.js (using NodeSource PPA)
 echo "Installing Node.js..."
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
-source ~/.nvm/nvm.sh
-nvm install 20
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt install -y nodejs
 # Verify Node.js installation
 echo "Node.js version installed: $(node -v)"
 
